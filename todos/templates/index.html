@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for todo in todos %}
+        {% if todo.completed %}
+            {% include "partials/completed.html" %}
+        {% else %}
+            {% include "partials/no_completed.html" %}
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock content %}
