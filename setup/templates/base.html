@@ -18,9 +18,11 @@
     <main>
         <div class="container">
             <form method="post">
-                {% csrf_token %}
-                <input type="text" placeholder="digite a nova tarefa" name="title">
-                <button type="submit">Adicionar</button>
+                {% if todo %}
+                    {% include "partials/form_edit.html" %}
+                {% else %}
+                    {% include "partials/form.html" %}
+                {% endif %}
             </form>
             {% block content %}
 

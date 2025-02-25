@@ -1,6 +1,6 @@
 <li>
     <span>{{todo.title}}</span>
-    <a href="" title="concluido"><i class="bi bi-check-lg"></i></a>
-    <a href="" title="editar"><i class="bi bi-pencil"></i></a>
+    <a href="{% url "completed" pk=todo.pk %}" title="concluido"><i class="bi bi-check-lg"></i></a>
+    <a href="{% url "up" pk=todo.pk %}" title="editar"><i class="bi bi-pencil"></i></a>
     <a href="{% url "del" pk=todo.pk %}" title="excluir"><i class="bi bi-trash"></i></a>
 </li>

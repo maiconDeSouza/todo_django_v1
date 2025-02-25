@@ -24,3 +24,28 @@ class DelView(View):
         todo = Todo.objects.get(id=pk)
         todo.delete()
         return redirect('home')
+
+
+class UpView(View):
+    def get(self, request, pk):
+        todos = Todo.objects.all()
+        todo = todos.get(id=pk)
+
+        return render(request, 'index.html', {'todos': todos, 'todo': todo})
+
+    def post(self, request, pk):
+        new_todo = TodoForm(request.POST)
+        if new_todo.is_valid():
+            todo = Todo.objects.get(id=pk)
+            todo.title = request.POST.get('title')
+            todo.save()
+
+        return redirect('home')
+
+
+class CompletedView(View):
+    def get(self, request, pk):
+        todo = Todo.objects.get(id=pk)
+        todo.completed = not todo.completed
+        todo.save()
+        return redirect('home')
